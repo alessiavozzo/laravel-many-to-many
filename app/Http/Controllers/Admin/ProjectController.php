@@ -123,6 +123,9 @@ class ProjectController extends Controller
         if($project->project_image){
             Storage::delete($project->project_image);
         };
+
+        $project->technologies()->detach();
+        /* prima stacco il progetto dalle tecnologie abbinate, poi lo elimino */
         $project->delete();
         return to_route('admin.projects.index')->with('message', "Project $project->title deleted successfully");
     }
