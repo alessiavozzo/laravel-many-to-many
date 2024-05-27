@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Support\Str;
 use App\Models\Type;
+use App\Helpers\ColorGenerator;
 
 class TechnologyController extends Controller
 {
@@ -37,6 +38,8 @@ class TechnologyController extends Controller
         $validated=$request->validated();
         $slug= Str::slug($validated['name'], '-');
         $validated['slug'] = $slug;
+        $color = ColorGenerator::randomColor();
+        $validated['color'] = $color;
         Technology::create($validated);
         return to_route('admin.technologies.index')->with('message', 'New technology created successfully');
     }

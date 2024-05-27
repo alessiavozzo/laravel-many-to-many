@@ -50,7 +50,8 @@
 
                                         <td>
                                             @foreach ($project->technologies as $tech)
-                                                {{ $tech->name }}
+                                                <div class="badge rounded-pill"
+                                                    style="background-color: {{ $tech->color }}">{{ $tech->name }}</div>
                                             @endforeach
                                         </td>
 
