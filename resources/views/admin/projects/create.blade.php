@@ -70,7 +70,8 @@
                 </div>
 
                 {{-- technologies --}}
-                <div class="mb-3">
+                <span class="mb-2 d-block"><strong>Technologies</strong></span>
+                <div class="mb-3 d-flex gap-3">
                     @foreach ($technologies as $technology)
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="{{ $technology->id }}"
@@ -81,11 +82,10 @@
 
                         </div>
                     @endforeach
-                    @error('technologies')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-
                 </div>
+                @error('technologies')
+                    <div class="text-danger mb-3">{{ $message }}</div>
+                @enderror
 
 
 
