@@ -1,0 +1,45 @@
+@use "./variables" as *;
+
+.content-wrapper {
+    /* padding-top: 80px !important; */
+}
+
+.main-admin,
+.guest-page {
+    background-color: $dash-darkest;
+}
+
+.back-btn {
+    background-color: $dash-bg-title;
+    text-decoration: none;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $dash-text-light !important;
+    border: 1px solid $dash-text-light !important;
+    border-radius: 50px;
+    width: 2rem;
+    height: 2rem;
+    transition: width 1s;
+    overflow: hidden;
+    position: relative;
+
+    span {
+        opacity: 0;
+
+        position: absolute;
+    }
+
+    &:hover {
+        width: 6rem;
+        justify-content: start;
+    }
+
+    &:hover span {
+        opacity: 1;
+        margin-left: 1.5rem;
+        transition: opacity 1s;
+    }
+
+}
