@@ -87,13 +87,27 @@
 
                 {{-- technologies --}}
                 <span class="mb-2 d-block"><strong>Technologies</strong></span>
-                <div class="mb-3 d-flex gap-3">
+                <div class="">
+                    {{-- se ci sono errori di validazione voglio i campi compilati così come li ho lasciati prima di sbagliare la validazione --}}
+                    {{-- di partenza voglio vedere le tech checkate già da prima --}}
                     @foreach ($technologies as $technology)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $technology->id }}"
-                                id="tech-{{ $technology->id }}" name="technologies[]" />
-                            <label class="form-check-label" for="tech-{{ $technology->id }}"> {{ $technology->name }}
-                            </label>
+                        <div class="form-check form-check-inline">
+
+                            @if ($errors->any())
+                                <input class="form-check-input" type="checkbox" value="{{ $technology->id }}"
+                                    id="tech-{{ $technology->id }}" name="technologies[]"
+                                    {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }} />
+                                <label class="form-check-label" for="tech-{{ $technology->id }}"> {{ $technology->name }}
+                                </label>
+                            @else
+                                {{-- @dd($project->technologies) --}}
+
+                                <input class="form-check-input" type="checkbox" value="{{ $technology->id }}"
+                                    id="tech-{{ $technology->id }}" name="technologies[]"
+                                    {{ $project->technologies->contains($technology->id) ? 'checked' : '' }} />
+                                <label class="form-check-label" for="tech-{{ $technology->id }}"> {{ $technology->name }}
+                                </label>
+                            @endif
 
                         </div>
                     @endforeach
@@ -141,9 +155,9 @@
                 {{-- github link --}}
                 <div class="mb-3">
                     <label for="github_link" class="form-label"><strong>Github link</strong></label>
-                    <input type="text" class="form-control @error('github_link') is-invalid @enderror" name="github_link"
-                        id="github_link" aria-describedby="github_linkHelper" placeholder="github_link"
-                        value="{{ old('github_link', $project->github_link) }}" />
+                    <input type="text" class="form-control @error('github_link') is-invalid @enderror"
+                        name="github_link" id="github_link" aria-describedby="github_linkHelper"
+                        placeholder="github_link" value="{{ old('github_link', $project->github_link) }}" />
                     <small id="github_linkHelper" class="form-text text-muted">Edit github link</small>
                     @error('github_link')
                         <div class="text-danger">{{ $message }}</div>
