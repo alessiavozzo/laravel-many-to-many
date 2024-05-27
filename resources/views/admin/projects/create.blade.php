@@ -69,6 +69,26 @@
                     </select>
                 </div>
 
+                {{-- technologies --}}
+                <div class="mb-3">
+                    @foreach ($technologies as $technology)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $technology->id }}"
+                                id="tech-{{ $technology->id }}" name="technologies[]"
+                                {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }} />
+                            <label class="form-check-label" for="tech-{{ $technology->id }}"> {{ $technology->name }}
+                            </label>
+
+                        </div>
+                    @endforeach
+                    @error('technologies')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+
+                </div>
+
+
+
                 <div class="mb-3">
                     <label for="preview" class="form-label"><strong>Preview</strong></label>
                     <input type="text" class="form-control @error('preview') is-invalid @enderror" name="preview"

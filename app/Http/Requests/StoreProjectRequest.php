@@ -30,7 +30,8 @@ class StoreProjectRequest extends FormRequest
             'github_link' => 'required',
             'creation_date' => 'nullable',
             'description' => 'nullable',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'exists:technologies,id'
         ];
     }
 }
