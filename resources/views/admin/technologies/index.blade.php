@@ -21,7 +21,9 @@
                             </div>
                             <div class="card-body text-center">
                                 {{-- <div class="card-text">{{ $technology->slug }}</div> --}}
-                                <a href="{{ route('admin.technologies.show', $technology) }}" class="btn view-btn">All projects using this technology</a>
+                                <a href="{{ route('admin.technologies.show', $technology) }}"
+                                    class="btn view-btn text-white">View
+                                    projects</a>
                                 <a href="{{ route('admin.technologies.edit', $technology) }}" class="btn edit-btn">Edit</a>
 
                                 <button technology="button" class="btn delete-btn" data-bs-toggle="modal"
