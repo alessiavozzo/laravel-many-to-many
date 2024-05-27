@@ -37,7 +37,8 @@
                         data-bs-target="#modalId-{{ $type->id }}">
                         Delete
                     </button>
-                    @include('admin.partials.type-delete')
+                    {{-- @include('admin.partials.type-delete') --}}
+                    <x-delete-modal :id="$type->id" :name="$type->name" :route="route('admin.types.destroy', $type)" />
                 </div>
 
 

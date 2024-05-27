@@ -106,7 +106,8 @@
                             data-bs-target="#modalId-{{ $project->id }}">
                             Delete
                         </button>
-                        @include('admin.partials.project-delete')
+                        {{-- @include('admin.partials.project-delete') --}}
+                        <x-delete-modal :id="$project->id" :name="$project->title" :route="route('admin.projects.destroy', $project)" />
                     </div>
                 </div>
             </div>
