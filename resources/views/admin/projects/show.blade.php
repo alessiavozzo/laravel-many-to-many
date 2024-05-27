@@ -84,7 +84,8 @@
                     <div class="card-text mb-2">
                         <strong class="pe-2">TECHNOLOGIES:</strong>
                         @foreach ($project->technologies as $technology)
-                            {{ $technology->name }}
+                            <div class="badge rounded-pill" style="background-color: {{ $technology->color }}">
+                                {{ $technology->name }}</div>
                         @endforeach
                     </div>
 

@@ -16,7 +16,7 @@
             <div class="card-body">
                 {{-- id --}}
                 <div class="card-text mb-2">
-                    <strong style="color: {{ $type->color }}">SLUG: </strong>
+                    <strong style="color: {{ $type->color }}">ID: </strong>
                     {{ $type->id }}
                 </div>
                 {{-- slug --}}

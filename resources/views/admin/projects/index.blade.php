@@ -41,6 +41,7 @@
                                 <th scope="col">TITLE</th>
                                 {{-- <th scope="col">SLUG</th> --}}
                                 <th scope="col">PROJECT IMAGE</th>
+                                <th scope="col">TECHNOLOGIES</th>
                                 <th scope="col">PREVIEW</th>
                                 {{-- <th scope="col">TOOLS</th> --}}
                                 <th scope="col">PROJECT LINK</th>
@@ -68,6 +69,13 @@
                                                 alt="{{ $project->title }}">
                                         @endif
                                     </td>
+                                    <td style="width: 15%">
+                                        @foreach ($project->technologies as $tech)
+                                            <div class="badge rounded-pill" style="background-color: {{ $tech->color }}">
+                                                {{ $tech->name }}</div>
+                                        @endforeach
+                                    </td>
+
                                     <td><a class="td-link text-decoration-none text-white"
                                             href="{{ $project->preview }}">Video link</a></td>
                                     {{-- <td>{{ $project->tools }}</td> --}}
