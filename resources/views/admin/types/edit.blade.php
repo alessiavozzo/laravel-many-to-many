@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-<a href="{{ route('admin.types.index') }}" class="back-btn">
-            <i class="fa-solid fa-arrow-left"></i>
-            <span>back</span>
-        </a>
+    <a href="{{ route('admin.types.index') }}" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>back</span>
+    </a>
     <div class="container">
         <form data-bs-theme="dash-dark" action="{{ route('admin.types.update', $type) }}" method="post">
             @csrf
@@ -33,7 +33,7 @@
                 @enderror
             </div>
 
-            <button class="btn btn-primary" type="submit">Edit</button>
+            <button class="btn edit-btn" type="submit">Edit</button>
 
         </form>
     </div>

@@ -35,16 +35,16 @@ class TechnologyController extends Controller
      */
     public function store(StoreTechnologyRequest $request)
     {
-        /* memorizzo il nome del form nella sessione */
-       /*  session()->flash('form-name', 'form-new'); */
+        $validated = $request->validated();
 
-
-        $validated=$request->validated();
-        $slug= Str::slug($validated['name'], '-');
+        $slug = Str::slug($validated['name'], '-');
         $validated['slug'] = $slug;
+
         $color = ColorGenerator::randomColor();
         $validated['color'] = $color;
+        
         Technology::create($validated);
+
         return to_route('admin.technologies.index')->with('message', 'New technology created successfully');
     }
 
@@ -71,8 +71,7 @@ class TechnologyController extends Controller
      */
     public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
-        /* anche qui memorizzo il nome del form nella sessione che però è diverso per ogni campo che devo editare*/
-       /*  session()->flash('form-name', "form-edit-{$technology->id}"); */
+        
 
         $validated = $request->validated();
         $slug = Str::slug($validated['name'], '-');

@@ -22,6 +22,9 @@ class UpdateTechnologyRequest extends FormRequest
      */
     public function rules(): array
     {
+        /* anche qui memorizzo il nome del form nella sessione che però è diverso per ogni campo che devo editare*/
+        $this->session()->flash('form-name', "form-edit-{$this->technology->id}");
+
         return [
             'name' => ['required', 'max:100', Rule::unique('technologies')->ignore($this->technology->id)],
         ];

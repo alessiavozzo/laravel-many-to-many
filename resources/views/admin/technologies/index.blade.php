@@ -14,13 +14,13 @@
 
                         <div class="mb-2">
                             <input type="text"
-                                class="form-control {{ old('form-name') === 'form-new' ? 'is-invalid' : '' }}"
+                                class="form-control {{ session('form-name') === 'form-new' ? 'is-invalid' : '' }}"
                                 name="name" id="name" aria-describedby="nameHelper"
                                 placeholder="New technology name" value="{{ old('name') }}" />
 
-                            <input type="hidden" name="form-name" value="form-new" />
+                            {{-- <input type="hidden" name="form-name" value="form-new" /> --}}
 
-                            @if (old('form-name') === 'form-new')
+                            @if (session('form-name') == 'form-new')
                                 @error('name')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -71,18 +71,18 @@
                                                         <div class="collapse w-50" id="edit-collapse-{{ $technology->id }}">
 
                                                             <input type="text"
-                                                                class="form-control mb-2 edit-input {{ old('form-name') === "form-edit-{$technology->id}" ? 'is-invalid' : '' }}"
+                                                                class="form-control mb-2 edit-input {{ session('form-name') === "form-edit-{$technology->id}" ? 'is-invalid' : '' }}"
                                                                 name="name" id="name" aria-describedby="nameHelper"
                                                                 value="{{ $technology->name }}" />
 
 
-                                                            <input type="hidden" name="form-name"
-                                                                value="form-edit-{{ $technology->id }}" />
+                                                            {{-- <input type="hidden" name="form-name"
+                                                                value="form-edit-{{ $technology->id }}" /> --}}
 
                                                             <button class="btn edit-btn" type="submit">Edit</button>
                                                         </div>
 
-                                                        @if (old('form-name') === "form-edit-{$technology->id}")
+                                                        @if (session('form-name') === "form-edit-{$technology->id}")
                                                             @error('name')
                                                                 <div class="text-danger">{{ $message }}</div>
                                                             @enderror

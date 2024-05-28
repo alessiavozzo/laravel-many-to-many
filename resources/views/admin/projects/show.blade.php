@@ -83,10 +83,14 @@
                     {{-- technologies --}}
                     <div class="card-text mb-2">
                         <strong class="pe-2">TECHNOLOGIES:</strong>
-                        @foreach ($project->technologies as $technology)
-                            <div class="badge rounded-pill" style="background-color: {{ $technology->color }}">
-                                {{ $technology->name }}</div>
-                        @endforeach
+                        @if (count($project->technologies) > 0)
+                            @foreach ($project->technologies as $technology)
+                                <div class="badge rounded-pill" style="background-color: {{ $technology->color }}">
+                                    {{ $technology->name }}</div>
+                            @endforeach
+                        @else
+                            <span>N/A</span>
+                        @endif
                     </div>
 
                     {{-- preview --}}
