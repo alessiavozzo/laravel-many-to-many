@@ -21,6 +21,8 @@ class StoreTypeRequest extends FormRequest
      */
     public function rules(): array
     {
+        /* memorizzo il nome del form nella sessione */
+        session()->flash('form-name', 'form-new');
         return [
             'name' => 'required|min:2|max:50',
             'description'=> 'nullable|max:500'

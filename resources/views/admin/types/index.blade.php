@@ -6,9 +6,73 @@
 
         <div class="container" data-bs-theme="dash-dark">
 
-            <a class="text-decoration-none d-flex justify-content-end my-4 new-type" href="{{ route('admin.types.create') }}">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+
+            {{-- <a class="text-decoration-none d-flex justify-content-end my-4 new-type" href="{{ route('admin.types.create') }}">
+                <i class="fa-solid fa-plus"></i>
+            </a> --}}
+
+            <a class="text-decoration-none d-flex justify-content-end my-4 new-type" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                 <i class="fa-solid fa-plus"></i>
             </a>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel">New type</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+
+                    <form data-bs-theme="dash-dark" action="{{ route('admin.types.store') }}" method="post">
+                        @csrf
+
+                        {{-- name --}}
+                        <div class="mb-3">
+                            <label for="name" class="form-label"><strong>Name</strong></label>
+                            <input type="text"
+                                class="form-control  {{ session('form-name') === 'form-new' ? 'is-invalid' : '' }}"
+                                name="name" id="name" aria-describedby="nameHelper" placeholder="New type name"
+                                value="{{ old('name') }}" />
+                            <small id="nameHelper" class="form-text text-muted">Write type name</small>
+                            @if (session('form-name') == 'form-new')
+                                @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            @endif
+                        </div>
+
+                        {{-- description --}}
+                        <div class="mb-3">
+                            <label for="description"
+                                class="form-label {{ session('form-name') === 'form-new' ? 'is-invalid' : '' }}"><strong>Description</strong></label>
+                            <textarea class="form-control" name="description" id="description"
+                                placeholder="A brief text describing the project type" rows="8">{{ old('description') }}</textarea>
+
+                            @if (session('form-name') == 'form-new')
+                                @error('description')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            @endif
+                        </div>
+
+                        <button class="btn add-btn text-white" type="submit">Add</button>
+
+                    </form>
+
+
+
+                </div>
+            </div>
 
             @include('admin.partials.session-messages')
 
@@ -55,27 +119,34 @@
                                         {{-- name --}}
                                         <div class="mb-3">
                                             <label for="name" class="form-label"><strong>Name</strong></label>
-                                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                            <input type="text"
+                                                class="form-control  {{ session('form-name') === "form-edit-{$type->id}" ? 'is-invalid' : '' }}"
                                                 name="name" id="name" aria-describedby="nameHelper"
-                                                placeholder="Project name" value="{{ old('name', $type->name) }}" />
+                                                placeholder="Project name"
+                                                value="{{ session('form-name') === 'form-edit-' . $type->id ? old('name', $type->name) : $type->name }} " />
                                             <small id="nameHelper" class="form-text text-muted">Edit type name</small>
-                                            @error('name')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
+
+                                            @if (session('form-name') === "form-edit-{$type->id}")
+                                                @error('name')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            @endif
                                         </div>
 
                                         {{-- description --}}
                                         <div class="mb-3">
                                             <label for="description"
-                                                class="form-label @error('description') is-invalid @enderror"><strong>Description</strong></label>
+                                                class="form-label  {{ session('form-name') === "form-edit-{$type->id}" ? 'is-invalid' : '' }}"><strong>Description</strong></label>
                                             <textarea class="form-control" placeholder="A brief text describing the project type" name="description"
                                                 id="description" rows="8">{{ old('description', $type->description) }}</textarea>
-                                            @error('description')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
+                                            @if (session('form-name') === "form-edit-{$type->id}")
+                                                @error('name')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            @endif
                                         </div>
 
-                                        <button class="btn edit-btn mb-3" type="submit">Confirm changes</button>
+                                        <button class="btn edit-btn mb-3 w-100" type="submit">Confirm changes</button>
 
                                     </form>
 

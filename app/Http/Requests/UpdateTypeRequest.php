@@ -21,6 +21,8 @@ class UpdateTypeRequest extends FormRequest
      */
     public function rules(): array
     {
+        /* anche qui memorizzo il nome del form nella sessione che però è diverso per ogni campo che devo editare*/
+        $this->session()->flash('form-name', "form-edit-{$this->type->id}");
         return [
             'name' => 'required|min:2|max:50',
             'description'=> 'nullable|max:500'

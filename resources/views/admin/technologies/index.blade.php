@@ -73,7 +73,7 @@
                                                             <input type="text"
                                                                 class="form-control mb-2 edit-input {{ session('form-name') === "form-edit-{$technology->id}" ? 'is-invalid' : '' }}"
                                                                 name="name" id="name" aria-describedby="nameHelper"
-                                                                value="{{ $technology->name }}" />
+                                                                value="{{ session('form-name') === 'form-edit-' . $technology->id ? old('name', $technology->name) : $technology->name }}" />
 
 
                                                             {{-- <input type="hidden" name="form-name"

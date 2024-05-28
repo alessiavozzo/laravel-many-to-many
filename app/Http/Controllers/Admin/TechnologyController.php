@@ -18,7 +18,7 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        $technologies=Technology::all();
+        $technologies=Technology::orderByDesc('id')->paginate(7);
         return view('admin.technologies.index', compact('technologies'));
     }
 
@@ -70,8 +70,7 @@ class TechnologyController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateTechnologyRequest $request, Technology $technology)
-    {
-        
+    {       
 
         $validated = $request->validated();
         $slug = Str::slug($validated['name'], '-');
