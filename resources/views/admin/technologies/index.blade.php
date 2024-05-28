@@ -6,23 +6,33 @@
         <div class="container-fluid" data-bs-theme="dash-dark">
             <div class="row g-5">
 
+
                 <div class="col-12 col-lg-4">
                     <form data-bs-theme="dash-dark" action="{{ route('admin.technologies.store') }}" method="post">
                         @csrf
 
-                        {{-- name --}}
+
                         <div class="mb-2">
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                                id="name" aria-describedby="nameHelper" placeholder="New technology name"
-                                value="{{ old('name') }}" />
-                            @error('name')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            <input type="text"
+                                class="form-control {{ old('form-name') === 'form-new' ? 'is-invalid' : '' }}"
+                                name="name" id="name" aria-describedby="nameHelper"
+                                placeholder="New technology name" value="{{ old('name') }}" />
+
+                            <input type="hidden" name="form-name" value="form-new" />
+
+                            @if (old('form-name') === 'form-new')
+                                @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            @endif
                         </div>
 
                         <button class="btn add-btn text-white" type="submit">Add new technology</button>
 
                     </form>
+
+                    {{-- @dd(session()->all())
+                    @dd(session('form-name')) --}}
 
                 </div>
 
@@ -41,7 +51,7 @@
                                 </thead>
                                 <tbody>
 
-                                    @forelse ($technologies as $technology)
+                                    @forelse ($technologies as $key=>$technology)
                                         <tr class="align-middle">
                                             <td>
                                                 <form data-bs-theme="dash-dark"
@@ -61,20 +71,23 @@
                                                         <div class="collapse w-50" id="edit-collapse-{{ $technology->id }}">
 
                                                             <input type="text"
-                                                                class="form-control mb-2 @error('name') is-invalid @enderror edit-input"
+                                                                class="form-control mb-2 edit-input {{ old('form-name') === "form-edit-{$technology->id}" ? 'is-invalid' : '' }}"
                                                                 name="name" id="name" aria-describedby="nameHelper"
                                                                 value="{{ $technology->name }}" />
 
 
+                                                            <input type="hidden" name="form-name"
+                                                                value="form-edit-{{ $technology->id }}" />
+
                                                             <button class="btn edit-btn" type="submit">Edit</button>
                                                         </div>
 
-
-                                                        @error('name')
-                                                            <div class="text-danger">{{ $message }}</div>
-                                                        @enderror
+                                                        @if (old('form-name') === "form-edit-{$technology->id}")
+                                                            @error('name')
+                                                                <div class="text-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        @endif
                                                     </div>
-
 
                                                 </form>
 

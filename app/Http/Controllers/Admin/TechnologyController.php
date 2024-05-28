@@ -27,7 +27,7 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        return view('admin.technologies.create');
+        /* return view('admin.technologies.create'); */
     }
 
     /**
@@ -35,6 +35,10 @@ class TechnologyController extends Controller
      */
     public function store(StoreTechnologyRequest $request)
     {
+        /* memorizzo il nome del form nella sessione */
+       /*  session()->flash('form-name', 'form-new'); */
+
+
         $validated=$request->validated();
         $slug= Str::slug($validated['name'], '-');
         $validated['slug'] = $slug;
@@ -59,7 +63,7 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
-        return view('admin.technologies.edit', compact('technology'));
+       /*  return view('admin.technologies.edit', compact('technology')); */
     }
 
     /**
@@ -67,6 +71,9 @@ class TechnologyController extends Controller
      */
     public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
+        /* anche qui memorizzo il nome del form nella sessione che però è diverso per ogni campo che devo editare*/
+       /*  session()->flash('form-name', "form-edit-{$technology->id}"); */
+
         $validated = $request->validated();
         $slug = Str::slug($validated['name'], '-');
         $validated['slug'] = $slug;
