@@ -29,7 +29,7 @@
                 @if (Str::startsWith($project->project_image, 'https://'))
                     <img class="card-img-top mb-3" src="{{ $project->project_image }}" alt="{{ $project->title }}" />
                 @else
-                    <img width="card-img-top mb-3" loading="lazy" src="{{ asset('storage/' . $project->project_image) }}"
+                    <img class="card-img-top mb-3" loading="lazy" src="{{ asset('storage/' . $project->project_image) }}"
                         alt="{{ $project->title }}">
                 @endif
 

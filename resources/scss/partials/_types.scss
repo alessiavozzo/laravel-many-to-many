@@ -4,7 +4,7 @@
     .card {
         transition: all 0.3s;
 
-        &:has(.view-btn:hover, .edit-btn:hover, .delete-btn:hover) {
+        &:has(.view-btn:hover, .edit-btn:hover, .delete-btn:hover, .confirm-edit-btn:hover) {
             box-shadow: 0 0 7px 2px $dash-text-light;
             transform: scale(1.05);
         }
@@ -32,6 +32,15 @@
 
     .add-btn {
         @include add-btn;
+    }
+
+    .confirm-edit-btn {
+        background-color: $dash-edit !important;
+
+        &:hover {
+            border: 1px solid $dash-text-light !important;
+            background-color: $dash-edit-dark !important;
+        }
     }
 
     .new-type>i {

@@ -25,7 +25,7 @@
 </head>
 
 
-<body class="vh-100">
+<body class="vh-100 m-0">
 
     <div id="app" class="h-100">
         <div class="wrapper d-flex h-100">

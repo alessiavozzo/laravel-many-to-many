@@ -53,7 +53,7 @@ class TechnologyController extends Controller
      */
     public function show(Technology $technology)
     {
-        $projects = $technology->projects;
+        $projects = $technology->projects()->orderBy('id', 'desc')->get();
         $types=Type::all();
         return view('admin.technologies.show', compact('technology', 'projects', 'types'));
     }

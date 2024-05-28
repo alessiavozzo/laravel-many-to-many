@@ -156,7 +156,8 @@
                                             @endif
                                         </div>
 
-                                        <button class="btn edit-btn mb-3 w-100" type="submit">Confirm changes</button>
+                                        <button class="btn confirm-edit-btn mb-3 w-100" type="submit">Confirm
+                                            changes</button>
 
                                         <button type="button" class="btn-close position-absolute top-0 end-0"
                                             data-bs-toggle="collapse" data-bs-target="#edit-collapse-{{ $type->id }}"

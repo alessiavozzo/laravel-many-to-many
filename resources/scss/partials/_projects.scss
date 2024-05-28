@@ -15,10 +15,6 @@
         color: $dash-portfolio-light !important;
     }
 
-    .type-link:hover {
-        box-shadow: 0 0 3px 2px $dash-text-light;
-    }
-
     .view-btn,
     .edit-btn,
     .delete-btn {
@@ -60,38 +56,3 @@
 /* .projects-table> :not(caption)>*>* {
     background-color: $dash-dark !important;
 } */
-
-.pagination {
-
-    @include d-flex-center;
-    padding-top: 1rem;
-    gap: 0.5rem;
-
-    li>.page-link,
-    li>a {
-        background-color: $dash-darkest;
-        border: none;
-        color: $dash-text-light;
-    }
-
-    .page-item>.page-link {
-        border-radius: 50%;
-        width: 1rem;
-        padding: 0.7rem;
-        height: 1rem;
-        @include d-flex-center;
-    }
-
-    .page-item:not(.page-item:first-of-type, .page-item:last-of-type)>.page-link:hover {
-        background-color: $dash-portfolio-dark !important;
-    }
-
-    .page-item.active>.page-link {
-        background-color: $dash-portfolio-dark !important;
-    }
-
-}
-
-nav:has(.pagination) p.small {
-    display: none;
-}
