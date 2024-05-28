@@ -51,7 +51,7 @@
                                                     @method('PATCH')
 
                                                     {{-- name --}}
-                                                    <div class="mb-3">
+                                                    <div class="">
                                                         <a class="btn" data-bs-toggle="collapse"
                                                             href="#edit-collapse-{{ $technology->id }}" role="button"
                                                             aria-expanded="false"
@@ -84,20 +84,19 @@
 
                                             <td>{{ $technology->slug }}</td>
 
-                                            <td>{{ $technology->projects()->count() }}</td>
-
-
-                                            <td style="width: 30%">
+                                            <td>
                                                 <a href="{{ route('admin.technologies.show', $technology) }}"
                                                     class="btn view-btn text-white">View
-                                                    projects</a>
+                                                    projects ({{ $technology->projects()->count() }})</a>
+
+                                            </td>
 
 
-
+                                            <td style="width: 15%">
                                                 {{-- @include('admin.partials.project-delete') --}}
                                                 <button technology="button" class="btn delete-btn" data-bs-toggle="modal"
                                                     data-bs-target="#modalId-{{ $technology->id }}">
-                                                    Delete
+                                                    <i class="fa-solid fa-trash"></i>
                                                 </button>
                                                 <x-delete-modal :id="$technology->id" :name="$technology->name" :route="route('admin.technologies.destroy', $technology)" />
 
