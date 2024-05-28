@@ -7,7 +7,8 @@
         <div class="container" data-bs-theme="dash-dark">
 
             @if ($errors->any())
-                <div class="alert alert-danger">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -21,8 +22,8 @@
                 <i class="fa-solid fa-plus"></i>
             </a> --}}
 
-            <a class="text-decoration-none d-flex justify-content-end my-4 new-type" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            <a class="text-decoration-none d-flex justify-content-end my-4 new-type" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                 <i class="fa-solid fa-plus"></i>
             </a>
 
@@ -40,7 +41,7 @@
                         <div class="mb-3">
                             <label for="name" class="form-label"><strong>Name</strong></label>
                             <input type="text"
-                                class="form-control  {{ session('form-name') === 'form-new' ? 'is-invalid' : '' }}"
+                                class="form-control  {{ session('form-name') === 'form-new' && $errors->has('name') ? 'is-invalid' : '' }}"
                                 name="name" id="name" aria-describedby="nameHelper" placeholder="New type name"
                                 value="{{ old('name') }}" />
                             <small id="nameHelper" class="form-text text-muted">Write type name</small>
@@ -53,10 +54,10 @@
 
                         {{-- description --}}
                         <div class="mb-3">
-                            <label for="description"
-                                class="form-label {{ session('form-name') === 'form-new' ? 'is-invalid' : '' }}"><strong>Description</strong></label>
-                            <textarea class="form-control" name="description" id="description"
-                                placeholder="A brief text describing the project type" rows="8">{{ old('description') }}</textarea>
+                            <label for="description" class="form-label "><strong>Description</strong></label>
+                            <textarea
+                                class="form-control {{ session('form-name') === 'form-new' && $errors->has('description') ? 'is-invalid' : '' }}"
+                                name="description" id="description" placeholder="A brief text describing the project type" rows="8">{{ old('description') }}</textarea>
 
                             @if (session('form-name') == 'form-new')
                                 @error('description')
@@ -149,7 +150,7 @@
                                                 class="form-control {{ session('form-name') === "form-edit-{$type->id}" && $errors->has('description') ? 'is-invalid' : '' }}"
                                                 placeholder="A brief text describing the project type" name="description" id="description" rows="8">{{ session('form-name') === 'form-edit-' . $type->id ? old('description', $type->description) : $type->description }}</textarea>
                                             @if (session('form-name') === "form-edit-{$type->id}")
-                                                @error('name')
+                                                @error('description')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             @endif

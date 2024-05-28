@@ -14,7 +14,7 @@
 
                         <div class="mb-2">
                             <input type="text"
-                                class="form-control {{ session('form-name') === 'form-new' ? 'is-invalid' : '' }}"
+                                class="form-control {{ session('form-name') === 'form-new' && $errors->has('name') ? 'is-invalid' : '' }}"
                                 name="name" id="name" aria-describedby="nameHelper"
                                 placeholder="New technology name" value="{{ old('name') }}" />
 
