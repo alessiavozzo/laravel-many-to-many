@@ -120,7 +120,7 @@
                                         <div class="mb-3">
                                             <label for="name" class="form-label"><strong>Name</strong></label>
                                             <input type="text"
-                                                class="form-control  {{ session('form-name') === "form-edit-{$type->id}" ? 'is-invalid' : '' }}"
+                                                class="form-control  {{ session('form-name') === "form-edit-{$type->id}" && $errors->has('name') ? 'is-invalid' : '' }}"
                                                 name="name" id="name" aria-describedby="nameHelper"
                                                 placeholder="Project name"
                                                 value="{{ session('form-name') === 'form-edit-' . $type->id ? old('name', $type->name) : $type->name }} " />
@@ -135,10 +135,10 @@
 
                                         {{-- description --}}
                                         <div class="mb-3">
-                                            <label for="description"
-                                                class="form-label  {{ session('form-name') === "form-edit-{$type->id}" ? 'is-invalid' : '' }}"><strong>Description</strong></label>
-                                            <textarea class="form-control" placeholder="A brief text describing the project type" name="description"
-                                                id="description" rows="8">{{ old('description', $type->description) }}</textarea>
+                                            <label for="description" class="form-label"><strong>Description</strong></label>
+                                            <textarea
+                                                class="form-control {{ session('form-name') === "form-edit-{$type->id}" && $errors->has('description') ? 'is-invalid' : '' }}"
+                                                placeholder="A brief text describing the project type" name="description" id="description" rows="8">{{ session('form-name') === 'form-edit-' . $type->id ? old('description', $type->description) : $type->description }}</textarea>
                                             @if (session('form-name') === "form-edit-{$type->id}")
                                                 @error('name')
                                                     <div class="text-danger">{{ $message }}</div>

@@ -71,7 +71,7 @@
                                                         <div class="collapse w-50" id="edit-collapse-{{ $technology->id }}">
 
                                                             <input type="text"
-                                                                class="form-control mb-2 edit-input {{ session('form-name') === "form-edit-{$technology->id}" ? 'is-invalid' : '' }}"
+                                                                class="form-control mb-2 edit-input {{ session('form-name') === "form-edit-{$technology->id}" && $errors->has('name') ? 'is-invalid' : '' }}"
                                                                 name="name" id="name" aria-describedby="nameHelper"
                                                                 value="{{ session('form-name') === 'form-edit-' . $technology->id ? old('name', $technology->name) : $technology->name }}" />
 
