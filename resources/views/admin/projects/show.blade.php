@@ -72,11 +72,10 @@
                     {{-- type --}}
                     <div class="card-text mb-2">
                         <strong class="pe-2">TYPE:</strong>
-                        <a href="{{ $project->type ? route('admin.types.show', $project->type) : '#' }}"
-                            class="type-badge text-decoration-none text-white p-2 d-inline-block text-center {{ $project->type ? '' : 'disabled ?>' }}"
+                        <div class="type-badge text-white p-2 d-inline-block text-center {{ $project->type ? '' : 'disabled ?>' }}"
                             style="background-color: {{ $project->type ? $project->type->color : 'grey' }}">
                             {{ $project->type ? $project->type->name : 'Not defined' }}
-                        </a>
+                        </div>
 
                     </div>
 

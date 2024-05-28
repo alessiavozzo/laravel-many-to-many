@@ -88,9 +88,9 @@
 
                                     <td>
                                         @if ($project->type)
-                                            <a class=" type-link text-decoration-none badge p-2"
-                                                style="background-color: {{ $project->type->color }}"
-                                                href="{{ route('admin.types.show', $project->type) }}">{{ $project->type->name }}</a>
+                                            <div class="badge p-2" style="background-color: {{ $project->type->color }}"
+                                                href="{{ route('admin.types.show', $project->type) }}">
+                                                {{ $project->type->name }}</div>
                                         @else
                                             N/A
                                         @endif
