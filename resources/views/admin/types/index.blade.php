@@ -89,7 +89,9 @@
                                 {{-- <a href="{{ route('admin.types.show', $type) }}" class="btn view-btn">Details</a> --}}
 
                                 {{-- show details collapse menu --}}
-                                <div class="show-details collapse" id="details-collapse-{{ $type->id }}">
+                                <div class="show-details collapse position-relative"
+                                    id="details-collapse-{{ $type->id }}">
+
 
                                     <div class="card-text mb-2">
                                         <strong style="color: {{ $type->color }}">ID: </strong>
@@ -106,10 +108,17 @@
                                         {{ $type->description }}
                                     </div>
 
+                                    <button type="button" class="btn-close position-absolute top-0 end-0"
+                                        data-bs-toggle="collapse" data-bs-target="#details-collapse-{{ $type->id }}"
+                                        aria-expanded="false" aria-controls="details-collapse-{{ $type->id }}">
+                                    </button>
                                 </div>
 
+
                                 {{-- show edit form collapse --}}
-                                <div class="edit-content collapse" id="edit-collapse-{{ $type->id }}">
+                                <div class="edit-content collapse position-relative"
+                                    id="edit-collapse-{{ $type->id }}">
+
                                     <form data-bs-theme="dash-dark" action="{{ route('admin.types.update', $type) }}"
                                         method="post">
                                         @csrf
@@ -148,6 +157,11 @@
 
                                         <button class="btn edit-btn mb-3 w-100" type="submit">Confirm changes</button>
 
+                                        <button type="button" class="btn-close position-absolute top-0 end-0"
+                                            data-bs-toggle="collapse" data-bs-target="#edit-collapse-{{ $type->id }}"
+                                            aria-expanded="false" aria-controls="edit-collapse-{{ $type->id }}">
+                                        </button>
+
                                     </form>
 
 
@@ -157,8 +171,8 @@
                                 <div class="buttons d-flex justify-content-center align-items-center gap-2">
 
                                     <a class="btn view-btn" data-bs-toggle="collapse"
-                                        href="#details-collapse-{{ $type->id }}" role="button" aria-expanded="false"
-                                        aria-controls="details-collapse-{{ $type->id }}">
+                                        href="#details-collapse-{{ $type->id }}" role="button"
+                                        aria-expanded="false" aria-controls="details-collapse-{{ $type->id }}">
                                         Details
                                     </a>
                                     {{-- <a href="{{ route('admin.types.edit', $type) }}" class="btn edit-btn">Edit</a> --}}
